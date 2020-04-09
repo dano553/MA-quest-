@@ -10,6 +10,8 @@ const treasure    = document.getElementById('treasure');
 
 let currentLocation = 4;
 
+inventory =  [];
+
 let locations = [];
 locations[0] = "kantine";
 locations[1] = "trap";
@@ -55,10 +57,10 @@ descriptions[7] = "u staat in een klaslokaal. De tafels staan recht achter elkaa
 descriptions[8] = "u staat in het examenlokaal. Hier zijn de vierdejaars studenten bezig met het voorbereiden van hun examen";
 
 treasures = [];
-treasure[1] = "groen laser swaard";
+treasure[4] = "Een groenlaserswaard straight movie.";
 
-treasureImages = []
-treasureImages[1] = "groenlaserswaard.png"
+treasureImages = [];
+treasureImages[4] = "groenlaserswaard.png";
 
 myInput.addEventListener('keydown', getInput, false);
 
@@ -127,12 +129,26 @@ function removeFeedback() {
   feedback.innerHTML = "";
 }
 
-function showTreasure(currentLocation)
-{
-  if(typeof treasures[currentLocation]!= "undefined"){
-    console.log(treasures[currentLocation]);
-    treasure.scr = "treasures/" + treasureImages[currentLocation];
+function showTreasure(currentLocation){
+if(typeof treasureImages[currentLocation] != "undefined")
+  {
+    console.log(treasureImages[currentLocation]);
+    treasure.src = "treasures/" + treasureImages[currentLocation];
   }
 }
+function Locked(a) {
+  if (lockedDirections[a] == null){
+    return false;
+  }
+  else {
+    return true;
+  }
+}
+function pakTreasure(currentLocation) {
+    inventory.push(treasures[currentLocation])
+    treasures[currentLocation] = "";
+      treasureImages  [currentLocation] = "";
 
+  }
 giveLocation();
+showTreasure();
